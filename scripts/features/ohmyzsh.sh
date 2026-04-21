@@ -10,11 +10,11 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 
-if [ -f /home/$WSL_USER_NAME/.homestead-features/oh-my-zsh ]
-then
-    echo "oh-my-zsh already installed."
-    exit 0
-fi
+#if [ -f /home/$WSL_USER_NAME/.homestead-features/oh-my-zsh ]
+#then
+#    echo "oh-my-zsh already installed."
+#    exit 0
+#fi
 
 touch /home/$WSL_USER_NAME/.homestead-features/oh-my-zsh
 chown -Rf $WSL_USER_NAME:$WSL_USER_GROUP /home/$WSL_USER_NAME/.homestead-features

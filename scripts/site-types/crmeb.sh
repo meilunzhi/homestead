@@ -84,6 +84,24 @@ block="server {
         fastcgi_read_timeout 300;
     }
 
+#    location /notice {
+#        proxy_pass http://127.0.0.1:40001/;
+#        proxy_http_version 1.1;
+#        proxy_set_header Upgrade $http_upgrade;
+#        proxy_set_header Connection "upgrade";
+#        proxy_set_header X-real-ip $remote_addr;
+#        proxy_set_header X-Forwarded-For $remote_addr;
+#    }
+
+#    location /msg {
+#        proxy_pass http://127.0.0.1:40002/;
+#        proxy_http_version 1.1;
+#        proxy_set_header Upgrade $http_upgrade;
+#        proxy_set_header Connection "upgrade";
+#        proxy_set_header X-real-ip $remote_addr;
+#        proxy_set_header X-Forwarded-For $remote_addr;
+#    }
+
     location ~ /\.ht {
         deny all;
     }

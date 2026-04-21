@@ -9,6 +9,8 @@ class Homestead
 
     # Allow SSH Agent Forward from The Box
     config.ssh.forward_agent = true
+    # 禁用homestead 更新
+    config.vm.box_check_update = false
 
     # Configure Verify Host Key
     if settings.has_key?('verify_host_key')
@@ -24,10 +26,10 @@ class Homestead
     config.vm.hostname = settings['hostname'] ||= 'homestead'
 
     # Configure A Private Network IP
-    if settings['ip'] != 'autonetwork'
-      config.vm.network :private_network, ip: settings['ip'] ||= '192.168.56.56'
-    else
-      config.vm.network :private_network, ip: '0.0.0.0', auto_network: true
+    config.vm.network :private_network, ip: settings['ip'] ||= '192.168.10.10'
+    # 如果需要给局域网访问,再额外启用 public_network
+    if settings['public_network'] == true || settings['ip'] == 'autonetwork'
+      config.vm.network "public_network", ip: "192.168.68.188"
     end
 
     # Configure Additional Networks
@@ -138,6 +140,17 @@ class Homestead
     default_ports = {
       80 => 8000,
       443 => 44300,
+      3306  => 33060,
+      6379  => 6379,
+      4040  => 4040,
+      5432  => 54320,
+      7700  => 7700,
+      8025  => 8025,
+      9600  => 9600,
+      27017 => 27017,
+      15672 => 15672,
+      38258 => 38258,
+      2345 => 2345
     }
 
     # Use Default Port Forwarding Unless Overridden

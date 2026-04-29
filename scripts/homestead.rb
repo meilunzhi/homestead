@@ -29,7 +29,7 @@ class Homestead
     config.vm.network :private_network, ip: settings['ip'] ||= '192.168.10.10'
     # 如果需要给局域网访问,再额外启用 public_network
     if settings['public_network'] == true || settings['ip'] == 'autonetwork'
-      config.vm.network "public_network", ip: "192.168.68.188"
+      config.vm.network "public_network", ip: "192.168.68.188", bridge: settings['public_network_bridge'] ||= nil
     end
 
     # Configure Additional Networks
